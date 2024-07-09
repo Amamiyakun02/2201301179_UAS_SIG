@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Kebun;
+use App\Models\Icon;
+use App\Models\JenisPerkebunan;
+class BaseController extends Controller
+{
+    private Icon $icon;
+    private Kebun $kebun;
+    private JenisPerkebunan $jenisPerkebunan;
+    public function __construct(){
+        $this->icon = new Icon();
+        $this->kebun = new Kebun();
+        $this->jenisPerkebunan = new JenisPerkebunan();
+    }
+
+    public function getIcon(){
+        return $this->icon;
+    }
+    public function getKebun(){
+        return $this->kebun;
+    }
+    public function getJenisPerkebunan(){
+        return $this->jenisPerkebunan;
+    }
+}
