@@ -19,10 +19,18 @@
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
+    <link rel="stylesheet" href="{{ asset('assets/leaflet/leaflet.css') }}"/>
+    <script src="{{ asset('assets/leaflet/leaflet.js') }}"></script> 
+
+    <style>
+        /*mengatur ukuran dari canvas peta*/
+        #map{
+            height: 800px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -594,6 +602,10 @@
                 <!-- *************************************************************** -->
                 <!-- End First Cards -->
                 <!-- *************************************************************** -->
+                <div class="container mt-5">
+                    <div id="map">
+                    </div>
+                </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -642,6 +654,17 @@
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('js/pages/dashboards/dashboard1.min.js') }}"></script>
+
+    <script>
+        // Program Javascript
+        const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
+        const map = L.map('map').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
+            maxZoom: 25,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
+        }).addTo(map);
+
+    </script>
 </body>
 
 </html>
