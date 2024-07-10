@@ -17,6 +17,9 @@ class BaseController extends Controller
         $this->jenisPerkebunan = new JenisPerkebunan();
     }
 
+    public function index(){
+        return view('Content.index');
+    }
     public function getIcon(){
         return $this->icon;
     }
