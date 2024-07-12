@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Icon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class IconSeeder extends Seeder
 {
@@ -13,9 +14,24 @@ class IconSeeder extends Seeder
      */
     public function run(): void
     {
-        Icon::create([
-            'nama' => 'Icon 1',
-            'url_icon' => 'https://example.com/icon1.png'
-        ]);
+        $data = [
+            [
+            'nama' => 'Jagung',
+            'url_icon' => 'jagung.png'
+            ],
+            [
+                'nama' => 'Padi ',
+                'url_icon' => 'padi.png'   
+            ],
+            [
+                'nama' => 'Sawit',
+                'url_icon' => 'sawit.png'   
+            ],
+            [
+                'nama' => 'Karet',
+                'url_icon' => 'karet.png'   
+            ]
+        ];
+        DB::table('icon')->insert($data);
     }
 }

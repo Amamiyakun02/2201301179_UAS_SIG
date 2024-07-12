@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->double('luas');
             $table->foreignId('id_jenis')->constrained('jenis_perkebunan');
-            $table->string('poligon');
+            $table->text('poligon');
             $table->timestamps();
         });
     }
