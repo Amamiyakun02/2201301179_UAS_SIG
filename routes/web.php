@@ -16,5 +16,6 @@ Route::get('/', function () {
 Route::get('/kebun', [KebunController::class, 'index']);
 Route::get('/icon', [IconController::class, 'index']);
 Route::get('/jenis_perkebunan', [JenisPerkebunanController::class, 'index']);
+Route::get('/jenis_perkebunan/tambah', [JenisPerkebunanController::class, 'tambah'])->name('jenis_perkebunan.tambah');
 Route::get('/main', [BaseController::class, 'index']);
 

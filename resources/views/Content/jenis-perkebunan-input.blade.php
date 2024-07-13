@@ -309,7 +309,7 @@
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="bar-chart" class="feather-icon"></i><span
-                                    class="hide-menu">Charts </span></a>
+                                    class="hide-menu">Jenis Perkebunan </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                 <li class="sidebar-item"><a href="chart-morris.html" class="sidebar-link"><span
                                             class="hide-menu"> Morris Chart
@@ -325,57 +325,6 @@
                                         </span></a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="box" class="feather-icon"></i><span
-                                    class="hide-menu">UI Elements </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                <li class="sidebar-item"><a href="ui-buttons.html" class="sidebar-link"><span
-                                            class="hide-menu"> Buttons
-                                        </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="ui-modals.html" class="sidebar-link"><span
-                                            class="hide-menu"> Modals </span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="ui-tab.html" class="sidebar-link"><span
-                                            class="hide-menu"> Tabs </span></a></li>
-                                <li class="sidebar-item"><a href="ui-tooltip-popover.html" class="sidebar-link"><span
-                                            class="hide-menu"> Tooltip &
-                                            Popover</span></a></li>
-                                <li class="sidebar-item"><a href="ui-notification.html" class="sidebar-link"><span
-                                            class="hide-menu">Notification</span></a></li>
-                                <li class="sidebar-item"><a href="ui-progressbar.html" class="sidebar-link"><span
-                                            class="hide-menu">Progressbar</span></a></li>
-                                <li class="sidebar-item"><a href="ui-typography.html" class="sidebar-link"><span
-                                            class="hide-menu">Typography</span></a></li>
-                                <li class="sidebar-item"><a href="ui-bootstrap.html" class="sidebar-link"><span
-                                            class="hide-menu">Bootstrap
-                                            UI</span></a></li>
-                                <li class="sidebar-item"><a href="ui-breadcrumb.html" class="sidebar-link"><span
-                                            class="hide-menu">Breadcrumb</span></a></li>
-                                <li class="sidebar-item"><a href="ui-list-media.html" class="sidebar-link"><span
-                                            class="hide-menu">List
-                                            Media</span></a></li>
-                                <li class="sidebar-item"><a href="ui-grid.html" class="sidebar-link"><span
-                                            class="hide-menu"> Grid </span></a></li>
-                                <li class="sidebar-item"><a href="ui-carousel.html" class="sidebar-link"><span
-                                            class="hide-menu">
-                                            Carousel</span></a></li>
-                                <li class="sidebar-item"><a href="ui-scrollspy.html" class="sidebar-link"><span
-                                            class="hide-menu">
-                                            Scrollspy</span></a></li>
-                                <li class="sidebar-item"><a href="ui-toasts.html" class="sidebar-link"><span
-                                            class="hide-menu"> Toasts</span></a>
-                                </li>
-                                <li class="sidebar-item"><a href="ui-spinner.html" class="sidebar-link"><span
-                                            class="hide-menu"> Spinner </span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="ui-cards.html"
-                                aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
-                                    class="hide-menu">Cards
-                                </span></a>
                         </li>
                         <li class="list-divider"></li>
                     </ul>
@@ -419,44 +368,7 @@
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
-                <div class="card-group">
-                    <div class="card border-right">
-                        <div class="card-body">
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                    <div class="d-inline-flex align-items-center">
-                                        <h2 class="text-dark mb-1 font-weight-medium">100</h2>
-                                        </div>
-                                    <h4 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Perkebunan</h4>
-                                </div>
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-{{--                                    <span class="opacity-7 text-muted"><i data-feather=""></i></span>--}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border-right">
-                        <div class="card-body">
-                            <div class="d-flex d-lg-flex d-md-block align-items-center">
-                                <div>
-                                    <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">6</h2>
-                                    <h4 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Jenis Perkebunan
-                                    </h4>
-                                </div>
-                                <div class="ml-auto mt-md-3 mt-lg-0">
-{{--                                    <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>--}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- *************************************************************** -->
-                <!-- End First Cards -->
-                <!-- *************************************************************** -->
-                <div class="container-fluid">
-                    <div id="map">
-                    </div>
-                </div>
+{{--here--}}
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->

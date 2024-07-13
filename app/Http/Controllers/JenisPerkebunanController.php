@@ -16,4 +16,7 @@ class JenisPerkebunanController extends Controller
         return $this->jenisPerkebunan->all();
     }
 
+    public function tambah(){
+        return view('Content.jenis-perkebunan-input');
+    }
 }
