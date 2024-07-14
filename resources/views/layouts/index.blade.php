@@ -97,7 +97,7 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-            
+
                     </ul>
                 </div>
             </nav>
@@ -204,15 +204,14 @@
 
 <script>
         // Program Javascript
-        const koordinat = [-3.685748128760011, 114.7352782507877]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
-        const map = L.map('map').setView(koordinat, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
+        const koordinat = [-3.685748128760011, 114.7352782507877];
+        const map = L.map('map').setView(koordinat, 16);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 25,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
         function showKebunDetail(id) {
-            // Ambil data dari API menggunakan Fetch API
             fetch(`/data/data_kebun/${id}`)
             .then(response => {
                 if (!response.ok) {
@@ -236,29 +235,29 @@
             });
         }
 
-        fetch('/kebun') //mengambil seluruh dari REST API yang telah di buat
+        fetch('/data/data_kebun')
             .then(response => response.json())
             .then(data => {
                 // console.log(data);
-                // Menambahkan layer GeoJSON ke peta
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
-                        console.log(feature);
                         console.log(feature.properties.jenis.warna);
                         // console.log(layer);
                         if (feature.properties && feature.properties.nama) {
-                            // Mengikat popup dengan informasi untuk setiap poligon
                             layer.bindPopup(`
                             <h3><strong>${feature.properties.nama}</strong></h3><br>
                             Deskripsi: ${feature.properties.deskripsi}<br>
                             <button type="button" id="detailButton" onclick="showKebunDetail(${feature.properties.id})" class="btn btn-info btn-block waves-effect waves-light btn-sm" data-toggle="modal" data-target="#bs-example-modal-lg" data-luas="${feature.properties.luas}" data-id-jenis="${feature.properties.id_jenis}" data-lokasi="${feature.properties.lokasi}">Lihat Detail</button>
                         `);
+                            const center = layer.getBounds().getCenter();
                             const customIcon = L.icon({
-                                iconUrl: 'icon/default.png',  // Menggunakan icon dari properti
-                                iconSize: [32, 32],  // Ukuran icon
-                                iconAnchor: [16, 32],  // Titik anchor dari icon
-                                popupAnchor: [0, -32]  // Titik popup relatif terhadap icon
+                                iconUrl: '/icon/' + feature.properties.icon.url_icon,
+                                iconSize: [32, 32],
+                                iconAnchor: [16, 32],
+                                popupAnchor: [0, -32]
                             });
+
+                            L.marker(center, { icon: customIcon }).addTo(map);
                         }
                     },
                     style: feature => ({

@@ -13,7 +13,11 @@ class IconController extends Controller
         $this->icon = new Icon();
     }
     public function index(){
-        return $this->icon->all();
+        $data = [
+            'title' => 'Data Icon'
+        ];
+        $marker =  $this->icon->all();
+        return view('Content.icon', $data, compact('marker'));
     }
 
     public function tambah()
@@ -32,15 +36,19 @@ class IconController extends Controller
 //        dd($request->all());
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $path = $file->store('public/asset/icon');
-            $url = Storage::url($path);
+        // Dapatkan ekstensi file
+            $extension = $file->getClientOriginalExtension();
+            $filename = $request->nama . '.' . $extension;
+            $destinationPath = public_path('icon');
+            $file->move($destinationPath, $filename);
 
             $data = [
                 'nama' => $request->nama,
-                'url_icon' => $url,
+                'url_icon' => $filename,
             ];
+
             DB::table('icon')->insert($data);
-            return redirect()->route('icon.tambah')->with('success', 'Icon berhasil ditambahkan.');
+            return redirect()->route('marker')->with('success', 'Icon berhasil ditambahkan.');
         } else {
             return back()->withErrors(['gambar' => 'Gambar tidak valid.']);
         }

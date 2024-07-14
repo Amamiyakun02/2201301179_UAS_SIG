@@ -1,24 +1,26 @@
 @extends('layouts.index')
 
 @section('content')
-    <h4 class="card-title">Data Icon</h4>
+    <h4 class="card-title">Data Perkebunan</h4>
     <div class="table-responsive">
         <table class="table">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama</th>
-                    <th scope="col">Icon</th>
+                    <th scope="col">Hwx Warna</th>
+                    <th scope="col">Preview</th>
                 </tr>
             </thead>
             <tbody>
             @php $no = 1; @endphp
-            @foreach($marker as $row)
+            @foreach($jenis as $row)
                 <tr>
                     <th scope="row">{{ $no++ }}</th>
                     <td>{{ $row->nama }}</td>
+                    <td>{{ $row->warna }}</td>
                     <td>
-                        <img style="width: 50px; height: 50px;" src="{{ asset('icon/'. $row->url_icon) }}" alt="{{ $row->nama }}">
+                        <div style="background-color:{{ $row->warna }};width: 50px; height: 50px;"></div>
                     </td>
                 </tr>
             @endforeach

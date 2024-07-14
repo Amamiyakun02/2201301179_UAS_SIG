@@ -16,8 +16,13 @@ class JenisPerkebunanController extends Controller
         $this->jenisPerkebunan = new JenisPerkebunan();
     }
 
-    public function index(){
-        return $this->jenisPerkebunan->all();
+    public function index()
+    {
+        $data = [
+            'title' => 'Data Jenis Perkebunan',
+        ];
+        $jenis = $this->jenisPerkebunan->all();
+        return view('Content.jenis-perkebunan',$data,compact('jenis'));
     }
 
     public function tambah(){
@@ -43,7 +48,7 @@ class JenisPerkebunanController extends Controller
         ];
 //        dd($request->all());
         DB::table('jenis_perkebunan')->insert($data);
-        return redirect()->route('jenis_perkebunan.tambah')->with('success', 'Jenis Perkebunan berhasil ditambahkan.');
+        return redirect()->route('jenis_perkebunan')->with('success', 'Jenis Perkebunan berhasil ditambahkan.');
     }
 
     public function destroy($id)

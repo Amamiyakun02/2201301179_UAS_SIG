@@ -45,8 +45,15 @@ class KebunController extends Controller
 
         return $wkt;
     }
-
-    public function index(): array
+    public function index()
+    {
+        $data = [
+            'title' => 'Data Kebun'
+        ];
+        $kebun = $this->kebun->with('jenisPerkebunan')->get();
+        return view('Content.kebun',$data,compact('kebun'));
+    }
+    public function dataKebun(): array
     {
         $data = $this->kebun->with('jenisPerkebunan')->get(); // Ambil data kebun dengan relasi jenisPerkebunan
         $features = [];
@@ -63,7 +70,7 @@ class KebunController extends Controller
                     "deskripsi" => $item["deskripsi"],
                     "luas" => $item["luas"],
                     "jenis" => $jenisPerkebunan,
-                    "icon" => $jenisPerkebunan->icon  // Menambahkan icon dari jenisPerkebunan
+                    "icon" => $jenisPerkebunan->icon
                 ],
                 "geometry" => [
                     "type" => "Polygon",
@@ -73,6 +80,7 @@ class KebunController extends Controller
         }
         return $features;
     }
+
 
     public function tambah()
     {
@@ -94,17 +102,26 @@ class KebunController extends Controller
             'poligon' => 'required|string',
         ]);
 //        dd($request->all());
+            $poligonArray = json_decode($request->poligon, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                // Berhasil mengubah string menjadi array
+                print_r($poligonArray);
+            } else {
+                // Terjadi kesalahan saat mengubah string menjadi array
+                echo 'Error: ' . json_last_error_msg();
+            }
         $data = [
             'nama' => $request->nama,
             'lokasi' => $request->lokasi,
             'deskripsi' => $request->deskripsi,
             'luas' => $request->luas,
             'id_jenis' => $request->id_jenis,
-            'poligon' => $this->convertToWKT($request->poligon),
+            'poligon' => $this->convertToWKT($poligonArray),
         ];
 
         DB::table('kebun')->insert($data);
-        return redirect()->route('kebun.tambah')->with('success', 'Kebun berhasil ditambahkan.');
+        return redirect()->route('kebun')->with('success', 'Kebun berhasil ditambahkan.');
     }
 
 

@@ -15,8 +15,12 @@
                             class="hide-menu"> Data Perkebunan
                         </span></a>
                 </li>
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('jenis_perkebunan') }}"
+                        aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
+                            class="hide-menu">Jenis Perkebunan</span></a></li>
+
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('marker') }}"
-                        aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
+                        aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
                             class="hide-menu">Icon</span></a></li>
 
                 <li class="list-divider"></li>
