@@ -36,6 +36,9 @@
                 </div>
             </div>
         </div>
+         <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#full-width-modal">Full width modal</button>
+
         <!-- *************************************************************** -->
         <!-- End First Cards -->
         <!-- *************************************************************** -->
@@ -46,4 +49,15 @@
         <!-- *************************************************************** -->
         <!-- End Top Leader Table -->
     </div>
+
+    <script>
+        const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
+        const map = L.map('map').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
+            maxZoom: 25,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
+        }).addTo(map);
+    </script>
+
+
 @endsection

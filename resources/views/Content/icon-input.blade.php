@@ -38,22 +38,17 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
-
     <div class="container mt-5">
-        <h2>Tambah Jenis Perkebunan</h2>
-        <form action="{{ route('jenis_perkebunan.store') }}" method="POST">
+        <h2>Tambah Icon</h2>
+        <form action="{{ route('icon.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nama">Nama:</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
             <div class="form-group">
-                <label for="hex_warna">Hex Warna:</label>
-                <input type="text" class="form-control" id="hex_warna" name="hex_warna" required>
-            </div>
-            <div class="form-group">
-                <label for="id_icon">ID Icon:</label>
-                <input type="number" class="form-control" id="id_icon" name="id_icon" required>
+                <label for="gambar">Gambar Icon:</label>
+                <input type="file" class="form-control" id="gambar" name="gambar" required>
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>

@@ -265,6 +265,20 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
+             <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog"
+                aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-full-width">
+                    <div class="modal-content">
+                        <div id="peta" style="width: 100%; height: 80vh">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light"
+                                data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -307,16 +321,56 @@
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('js/pages/dashboards/dashboard1.min.js') }}"></script>
 
-    <script>
-        // Program Javascript
-        const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
-        const map = L.map('map').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
-            maxZoom: 25,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
-        }).addTo(map);
-
-    </script>
 </body>
+<script>
+    // Program Javascript
+    const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
+    const map = L.map('peta').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
+        maxZoom: 25,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
+    }).addTo(map);
+
+    fetch('/kebun') //mengambil seluruh dari REST API yang telah di buat
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Menambahkan layer GeoJSON ke peta
+            L.geoJSON(data, {
+                onEachFeature: function (feature, layer) {
+                    if (feature.properties && feature.properties.nama) {
+                        layer.bindPopup(`
+                            <strong>${feature.properties.nama}</strong><br>
+                            Lokasi: ${feature.properties.lokasi}<br>
+                            Deskripsi: ${feature.properties.deskripsi}<br>
+                            Luas: ${feature.properties.luas} hektar<br>
+                            ID Jenis: ${feature.properties.id_jenis}
+                        `);
+                    }
+                },
+                style: function (feature) {
+                    return {
+                        color: '#3388ff',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.2
+                    };
+                }
+            }).addTo(map);
+        })
+        .catch(error => {
+            console.error('Terjadi kesalahan saat mengambil data GeoJSON:', error);
+        });
+    // Add GeoJSON layer to the map
+    // L.geoJSON(geoJsonData, {
+    //     onEachFeature: function (feature, layer) {
+    //         if (feature.properties && feature.properties.nama) {
+    //             layer.bindPopup(`<strong>${feature.properties.nama}</strong><br>${feature.properties.deskripsi}`);
+    //         }
+    //     }
+    // }).addTo(map);
+
+
+</script>
 
 </html>

@@ -19,4 +19,29 @@ class JenisPerkebunanController extends Controller
     public function tambah(){
         return view('Content.jenis-perkebunan-input');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'hex_warna' => 'required|string|max:7',
+            'id_icon' => 'required|integer',
+        ]);
+        dd($request->all());
+        JenisPerkebunan::create([
+            'nama' => $request->nama,
+            'hex_warna' => $request->hex_warna,
+            'id_icon' => $request->id_icon,
+        ]);
+
+        return redirect()->route('jenis_perkebunan.tambah')->with('success', 'Jenis Perkebunan berhasil ditambahkan.');
+    }
+
+    public function destroy($id)
+    {
+        $jenisPerkebunan = JenisPerkebunan::findOrFail($id);
+        $jenisPerkebunan->delete();
+
+        return redirect()->route('jenis_perkebunan')->with('success', 'Jenis Perkebunan berhasil dihapus.');
+    }
 }
