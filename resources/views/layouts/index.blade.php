@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+{{--    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">--}}
     <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link href="{{ asset('assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
@@ -61,7 +61,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="/">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
                                 <img src="{{ asset('assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
@@ -172,54 +172,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- End Notification -->
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i data-feather="settings" class="svg-icon"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <div class="customize-input">
-                                    <select
-                                        class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected>EN</option>
-                                        <option value="1">AB</option>
-                                        <option value="2">AK</option>
-                                        <option value="3">BE</option>
-                                    </select>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <form>
-                                    <div class="customize-input">
-                                        <input class="form-control custom-shadow custom-radius border-0 bg-white"
-                                            type="search" placeholder="Search" aria-label="Search">
-                                        <i class="form-control-icon" data-feather="search"></i>
-                                    </div>
-                                </form>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -244,11 +196,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-{{--                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>--}}
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item"><a href="index.html"><h2>Dashboard</h2></a>
+                                    <li class="breadcrumb-item">
+                                        <div class="container-fluid">
+                                            <h2 class="text-center">Perkebunan di Kabupaten Tanah Laut</h2>
+                                        </div>
                                     </li>
                                 </ol>
                             </nav>
@@ -265,21 +219,21 @@
             <div class="container-fluid">
                 @yield('content')
             </div>
-             <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog"
-                aria-labelledby="fullWidthModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-full-width">
-                    <div class="modal-content">
-                        <div id="peta" style="width: 100%; height: 80vh">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light"
-                                data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!-- ============================================================== -->
+{{--             <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog"--}}
+{{--                aria-labelledby="fullWidthModalLabel" aria-hidden="true">--}}
+{{--                <div class="modal-dialog modal-full-width">--}}
+{{--                    <div class="modal-content">--}}
+{{--                        <div id="peta" style="width: 100%; height: 80vh">--}}
+{{--                        </div>--}}
+{{--                        <div class="modal-footer">--}}
+{{--                            <button type="button" class="btn btn-light"--}}
+{{--                                data-dismiss="modal">Close</button>--}}
+{{--                            <button type="button" class="btn btn-primary">Save changes</button>--}}
+{{--                        </div>--}}
+{{--                    </div><!-- /.modal-content -->--}}
+{{--                </div><!-- /.modal-dialog -->--}}
+{{--            </div><!-- /.modal -->--}}
+{{--            <!-- ============================================================== -->--}}
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
@@ -321,56 +275,50 @@
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('js/pages/dashboards/dashboard1.min.js') }}"></script>
 
-</body>
-<script>
-    // Program Javascript
-    const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
-    const map = L.map('peta').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
-        maxZoom: 25,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
-    }).addTo(map);
 
-    fetch('/kebun') //mengambil seluruh dari REST API yang telah di buat
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Menambahkan layer GeoJSON ke peta
-            L.geoJSON(data, {
-                onEachFeature: function (feature, layer) {
-                    if (feature.properties && feature.properties.nama) {
-                        layer.bindPopup(`
-                            <strong>${feature.properties.nama}</strong><br>
-                            Lokasi: ${feature.properties.lokasi}<br>
+<script>
+        // Program Javascript
+        const koordinat = [-3.685748128760011, 114.7352782507877]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
+        const map = L.map('map').setView(koordinat, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
+            maxZoom: 25,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
+        }).addTo(map);
+
+        fetch('/kebun') //mengambil seluruh dari REST API yang telah di buat
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Menambahkan layer GeoJSON ke peta
+                L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties && feature.properties.nama) {
+                            // Mengikat popup dengan informasi untuk setiap poligon
+                            layer.bindPopup(`
+                            <h3><strong>${feature.properties.nama}</strong></h3><br>
                             Deskripsi: ${feature.properties.deskripsi}<br>
-                            Luas: ${feature.properties.luas} hektar<br>
-                            ID Jenis: ${feature.properties.id_jenis}
+                            <button type="button" id="detailButton-${feature.properties.id}" class="btn btn-info btn-block waves-effect waves-light btn-sm" data-toggle="modal" data-target="#bs-example-modal-lg" data-luas="${feature.properties.luas}" data-id-jenis="${feature.properties.id_jenis}" data-lokasi="${feature.properties.lokasi}">Lihat Detail</button>
                         `);
-                    }
-                },
-                style: function (feature) {
-                    return {
+
+                            const customIcon = L.icon({
+                                iconUrl: 'icon/default.png',  // Menggunakan icon dari properti
+                                iconSize: [32, 32],  // Ukuran icon
+                                iconAnchor: [16, 32],  // Titik anchor dari icon
+                                popupAnchor: [0, -32]  // Titik popup relatif terhadap icon
+                            });
+                        }
+                    },
+                    style: feature => ({
                         color: '#3388ff',
                         weight: 2,
                         opacity: 1,
                         fillOpacity: 0.2
-                    };
-                }
-            }).addTo(map);
-        })
-        .catch(error => {
-            console.error('Terjadi kesalahan saat mengambil data GeoJSON:', error);
-        });
-    // Add GeoJSON layer to the map
-    // L.geoJSON(geoJsonData, {
-    //     onEachFeature: function (feature, layer) {
-    //         if (feature.properties && feature.properties.nama) {
-    //             layer.bindPopup(`<strong>${feature.properties.nama}</strong><br>${feature.properties.deskripsi}`);
-    //         }
-    //     }
-    // }).addTo(map);
-
-
-</script>
-
+                    })
+                }).addTo(map);
+            })
+            .catch(error => {
+                console.error('Terjadi kesalahan saat mengambil data GeoJSON:', error);
+            });
+    </script>
+</body>
 </html>

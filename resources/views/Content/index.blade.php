@@ -36,8 +36,6 @@
                 </div>
             </div>
         </div>
-         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#full-width-modal">Full width modal</button>
 
         <!-- *************************************************************** -->
         <!-- End First Cards -->
@@ -49,15 +47,42 @@
         <!-- *************************************************************** -->
         <!-- End Top Leader Table -->
     </div>
+    <!--  Modal content for the above example -->
+    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Perkebunan Karet</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                </div>
+                 <div class="modal-body">
+                    Luas: <span id="modal-luas"></span> hektar<br>
+                    ID Jenis: <span id="modal-id-jenis"></span><br>
+                    Lokasi: <span id="modal-lokasi"></span><br>
+                 </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Ambil semua tombol detail
+    var detailButtons = document.querySelectorAll('button[id^="detailButton-"]');
 
-    <script>
-        const pelaihari = [-3.7997999632620463, 114.76122075076779]; //mendefinisikan titik koordinat kota pelahari sebagai titik utama peta
-        const map = L.map('map').setView(pelaihari, 16);  // membuat object map dari lefleat dan mengatur titik yang pertama kali dilihat pada map
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {  //menambahkan tile atau sumber gambar peta yaitu dari openstreetmap.org
-            maxZoom: 25,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
-        }).addTo(map);
-    </script>
+    detailButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Ambil data dari atribut data- tombol
+            var luas = button.getAttribute('data-luas');
+            var idJenis = button.getAttribute('data-id-jenis');
+            var lokasi = button.getAttribute('data-lokasi');
 
-
+            // Perbarui konten modal dengan data yang diambil
+            document.getElementById('modal-luas').textContent = luas;
+            document.getElementById('modal-id-jenis').textContent = idJenis;
+            document.getElementById('modal-lokasi').textContent = lokasi;
+        });
+    });
+});
+</script>
 @endsection

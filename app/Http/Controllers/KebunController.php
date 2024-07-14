@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kebun;
+use Illuminate\Support\Facades\DB;
 class KebunController extends Controller
 {
     private Kebun $kebun;
@@ -83,16 +84,17 @@ class KebunController extends Controller
             'id_jenis' => 'required|integer',
             'poligon' => 'required|string',
         ]);
-        dd($request->all());
-        Kebun::create([
+//        dd($request->all());
+        $data = [
             'nama' => $request->nama,
             'lokasi' => $request->lokasi,
             'deskripsi' => $request->deskripsi,
             'luas' => $request->luas,
             'id_jenis' => $request->id_jenis,
-            'poligon' => $request->poligon,
-        ]);
+            'poligon' => $this->convertToWKT($request->poligon),
+        ];
 
+        DB::table('kebun')->insert($data);
         return redirect()->route('kebun.tambah')->with('success', 'Kebun berhasil ditambahkan.');
     }
 

@@ -21,12 +21,12 @@ class BaseController extends Controller
         return view('Content.index');
     }
     public function getIcon(){
-        return $this->icon;
+        return $this->icon->all();
     }
     public function getKebun(){
-        return $this->kebun;
+        return $this->kebun->all();
     }
     public function getJenisPerkebunan(){
-        return $this->jenisPerkebunan;
+        return $this->jenisPerkebunan->all();
     }
 }

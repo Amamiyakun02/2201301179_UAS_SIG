@@ -17,22 +17,22 @@ class JenisPerkebunanSeeder extends Seeder
         $data = [
             [
                 'nama' => 'Sawit',
-                'warna' => 'Merah',
+                'warna' => '#FFB200',
                 'id_icon' => 3
             ],
             [
                 'nama' => 'Karet',
-                'warna' => 'Hijau',
+                'warna' => '#9CDBA6',
                 'id_icon' => 4
             ],
             [
                 'nama' => 'Padi',
-                'warna' => 'Orange',
+                'warna' => '#FFA823',
                 'id_icon' => 2
             ],
             [
                 'nama' => 'Jagung',
-                'warna' => 'Kuning',
+                'warna' => '#FFDE4D',
                 'id_icon' => 1
             ]
         ];

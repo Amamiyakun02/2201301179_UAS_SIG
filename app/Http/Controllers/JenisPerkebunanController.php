@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\JenisPerkebunan;
+use function Laravel\Prompts\table;
+
 class JenisPerkebunanController extends Controller
 {
     private JenisPerkebunan $jenisPerkebunan;
@@ -27,13 +29,14 @@ class JenisPerkebunanController extends Controller
             'hex_warna' => 'required|string|max:7',
             'id_icon' => 'required|integer',
         ]);
-        dd($request->all());
-        JenisPerkebunan::create([
-            'nama' => $request->nama,
-            'hex_warna' => $request->hex_warna,
-            'id_icon' => $request->id_icon,
-        ]);
 
+        $data = [
+            'nama' => $request->nama,
+            'warna' => $request->hex_warna,
+            'id_icon' => $request->id_icon
+        ];
+//        dd($request->all());
+        DB::table('jenis_perkebunan')->insert($data);
         return redirect()->route('jenis_perkebunan.tambah')->with('success', 'Jenis Perkebunan berhasil ditambahkan.');
     }
 
