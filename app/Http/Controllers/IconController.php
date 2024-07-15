@@ -18,7 +18,10 @@ class IconController extends Controller
 
     public function tambah()
     {
-        return view('Content.icon-input');
+        $data = [
+            'title' => 'Tambah Icon'
+        ];
+        return view('Content.icon-input',$data);
     }
     public function store(Request $request)
     {

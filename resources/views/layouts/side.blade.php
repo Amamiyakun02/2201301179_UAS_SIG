@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                <!-- <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                         aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                             class="hide-menu">Jenis Perkebunan</span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
@@ -47,18 +47,8 @@
                                     class="hide-menu"> Basic Table
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="table-dark-basic.html" class="sidebar-link"><span
-                                    class="hide-menu"> Dark Basic Table
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"><a href="table-sizing.html" class="sidebar-link"><span
-                                    class="hide-menu">
-                                    Sizing Table
-                                </span></a>
-                        </li>
-
                     </ul>
-                </li>
+                </li> -->
                 <li class="list-divider"></li>
             </ul>
         </nav>

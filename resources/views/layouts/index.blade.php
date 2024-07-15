@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
 {{--    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">--}}
-    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <title>{{ $title }}</title>
     <!-- Custom CSS -->
     <link href="{{ asset('assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
@@ -97,81 +97,7 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-                        <!-- Notification -->
-                        <li class="nav-item dropdown">
-{{--                            <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"--}}
-{{--                                id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"--}}
-{{--                                aria-expanded="false">--}}
-{{--                                <span><i data-feather="bell" class="svg-icon"></i></span>--}}
-{{--                                <span class="badge badge-primary notify-no rounded-circle">5</span>--}}
-{{--                            </a>--}}
-                            <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="message-center notifications position-relative">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <div class="btn btn-danger rounded-circle btn-circle"><i
-                                                        data-feather="airplay" class="text-white"></i></div>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                                    <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                        the my new
-                                                        admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-success text-white rounded-circle btn-circle"><i
-                                                        data-feather="calendar" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Event today</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                        a reminder that you have event</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-info rounded-circle btn-circle"><i
-                                                        data-feather="settings" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Settings</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">You
-                                                        can customize this template
-                                                        as you want</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <span class="btn btn-primary rounded-circle btn-circle"><i
-                                                        data-feather="box" class="text-white"></i></span>
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span
-                                                        class="font-12 text-nowrap d-block text-muted">Just
-                                                        see the my admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+            
                     </ul>
                 </div>
             </nav>
@@ -285,21 +211,48 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' //menambahkan copyright dari openstreetmap
         }).addTo(map);
 
+        function showKebunDetail(id) {
+            // Ambil data dari API menggunakan Fetch API
+            fetch(`/data/data_kebun/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(kebun => {
+                document.getElementById('kebunNama').innerText = kebun.nama;
+                document.getElementById('kebunLokasi').innerText = kebun.lokasi;
+                document.getElementById('kebunDeskripsi').innerText = kebun.deskripsi;
+                document.getElementById('kebunLuas').innerText = kebun.luas;
+                document.getElementById('kebunJenis').innerText = kebun.jenis;
+                document.getElementById('kebunPoligon').innerText = kebun.poligon;
+
+                // Tampilkan modal
+                $('#bs-example-modal-lg').modal('show');
+            })
+            .catch(error => {
+                console.error('Error fetching kebun data:', error);
+            });
+        }
+
         fetch('/kebun') //mengambil seluruh dari REST API yang telah di buat
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 // Menambahkan layer GeoJSON ke peta
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
+                        console.log(feature);
+                        console.log(feature.properties.jenis.warna);
+                        // console.log(layer);
                         if (feature.properties && feature.properties.nama) {
                             // Mengikat popup dengan informasi untuk setiap poligon
                             layer.bindPopup(`
                             <h3><strong>${feature.properties.nama}</strong></h3><br>
                             Deskripsi: ${feature.properties.deskripsi}<br>
-                            <button type="button" id="detailButton-${feature.properties.id}" class="btn btn-info btn-block waves-effect waves-light btn-sm" data-toggle="modal" data-target="#bs-example-modal-lg" data-luas="${feature.properties.luas}" data-id-jenis="${feature.properties.id_jenis}" data-lokasi="${feature.properties.lokasi}">Lihat Detail</button>
+                            <button type="button" id="detailButton" onclick="showKebunDetail(${feature.properties.id})" class="btn btn-info btn-block waves-effect waves-light btn-sm" data-toggle="modal" data-target="#bs-example-modal-lg" data-luas="${feature.properties.luas}" data-id-jenis="${feature.properties.id_jenis}" data-lokasi="${feature.properties.lokasi}">Lihat Detail</button>
                         `);
-
                             const customIcon = L.icon({
                                 iconUrl: 'icon/default.png',  // Menggunakan icon dari properti
                                 iconSize: [32, 32],  // Ukuran icon
@@ -309,7 +262,7 @@
                         }
                     },
                     style: feature => ({
-                        color: '#3388ff',
+                        color: feature.properties.jenis.warna,
                         weight: 2,
                         opacity: 1,
                         fillOpacity: 0.2

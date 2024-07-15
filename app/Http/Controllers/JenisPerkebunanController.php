@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\JenisPerkebunan;
+use App\Models\Icon;
 use function Laravel\Prompts\table;
 
 class JenisPerkebunanController extends Controller
@@ -19,7 +21,11 @@ class JenisPerkebunanController extends Controller
     }
 
     public function tambah(){
-        return view('Content.jenis-perkebunan-input');
+        $data = [
+            'title' => 'Tambah Jenis Perkebunan'
+        ];
+        $icons = Icon::all();
+        return view('Content.jenis-perkebunan-input',$data,compact('icons'));
     }
 
     public function store(Request $request)

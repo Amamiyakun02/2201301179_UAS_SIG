@@ -1,44 +1,6 @@
 @extends('layouts.index')
 
 @section('content')
-{{--    <div class="row">--}}
-{{--        <div class="col-sm-12 col-md-6">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-{{--                    <h4 class="card-title">Input With Success</h4>--}}
-{{--                    <h6 class="card-subtitle">To use add <code>is-valid</code> class to the input</h6>--}}
-{{--                    <form class="mt-3">--}}
-{{--                        <div class="mb-3">--}}
-{{--                            <label class="form-control-label" for="inputSuccess1">Jenis Perkebunan</label>--}}
-{{--                            <input type="text" name="name" class="form-control is-valid" id="inputSuccess1">--}}
-{{--                            <div class="valid-feedback">--}}
-{{--                                Success! You've done it.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="mb-3">--}}
-{{--                            <label class="form-control-label" for="inputSuccess1">Warna</label>--}}
-{{--                            <input type="text" name="color" class="form-control is-valid" id="inputSuccess1">--}}
-{{--                            <div class="valid-feedback">--}}
-{{--                                Success! You've done it.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="input-group mb-3">--}}
-{{--                            <div class="input-group-prepend">--}}
-{{--                                <label class="input-group-text" for="inputGroupSelect01">Marker</label>--}}
-{{--                            </div>--}}
-{{--                            <select class="custom-select" id="inputGroupSelect01">--}}
-{{--                                <option selected>Choose...</option>--}}
-{{--                                <option value="1">One</option>--}}
-{{--                                <option value="2">Two</option>--}}
-{{--                                <option value="3">Three</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <div class="container mt-5">
         <h2>Tambah Jenis Perkebunan</h2>
         <form action="{{ route('jenis_perkebunan.store') }}" method="POST">
@@ -52,8 +14,13 @@
                 <input type="text" class="form-control" id="hex_warna" name="hex_warna" required>
             </div>
             <div class="form-group">
-                <label for="id_icon">ID Icon:</label>
-                <input type="number" class="form-control" id="id_icon" name="id_icon" required>
+            <label for="id_icon">Icon:</label>
+                <select class="form-control" id="id_icon" name="id_icon" required>
+                    <option value="">Pilih Icon</option>
+                    @foreach($icons as $icon)
+                        <option value="{{ $icon->id }}">{{ $icon->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>

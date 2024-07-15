@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kebun;
+use App\Models\JenisPerkebunan;
 use Illuminate\Support\Facades\DB;
 class KebunController extends Controller
 {
     private Kebun $kebun;
+
     public function __construct(){
         $this->kebun = new Kebun();
     }
+
     private function convertPolygonToGeoJson($polygon): array
     {
         // Remove "POLYGON((" prefix and "))" suffix
@@ -42,6 +45,7 @@ class KebunController extends Controller
 
         return $wkt;
     }
+
     public function index(): array
     {
         $data = $this->kebun->with('jenisPerkebunan')->get(); // Ambil data kebun dengan relasi jenisPerkebunan
@@ -72,8 +76,13 @@ class KebunController extends Controller
 
     public function tambah()
     {
-        return view('Content.perkebunan-input');
+        $data = [
+            'title' => 'Tambah Data Kebun'
+        ];
+        $jenisPerkebunan = JenisPerkebunan::all();
+        return view('Content.perkebunan-input',$data,compact('jenisPerkebunan'));
     }
+
         public function store(Request $request)
     {
         $request->validate([

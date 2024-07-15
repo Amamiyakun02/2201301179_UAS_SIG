@@ -1,44 +1,6 @@
 @extends('layouts.index')
 
 @section('content')
-{{--    <div class="row">--}}
-{{--        <div class="col-sm-12 col-md-6">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-{{--                    <h4 class="card-title">Input With Success</h4>--}}
-{{--                    <h6 class="card-subtitle">To use add <code>is-valid</code> class to the input</h6>--}}
-{{--                    <form class="mt-3">--}}
-{{--                        <div class="mb-3">--}}
-{{--                            <label class="form-control-label" for="inputSuccess1">Jenis Perkebunan</label>--}}
-{{--                            <input type="text" name="name" class="form-control is-valid" id="inputSuccess1">--}}
-{{--                            <div class="valid-feedback">--}}
-{{--                                Success! You've done it.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="mb-3">--}}
-{{--                            <label class="form-control-label" for="inputSuccess1">Warna</label>--}}
-{{--                            <input type="text" name="color" class="form-control is-valid" id="inputSuccess1">--}}
-{{--                            <div class="valid-feedback">--}}
-{{--                                Success! You've done it.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="input-group mb-3">--}}
-{{--                            <div class="input-group-prepend">--}}
-{{--                                <label class="input-group-text" for="inputGroupSelect01">Marker</label>--}}
-{{--                            </div>--}}
-{{--                            <select class="custom-select" id="inputGroupSelect01">--}}
-{{--                                <option selected>Choose...</option>--}}
-{{--                                <option value="1">One</option>--}}
-{{--                                <option value="2">Two</option>--}}
-{{--                                <option value="3">Three</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <div class="container mt-5">
         <h2>Tambah Kebun</h2>
         <form action="{{ route('kebun.store') }}" method="POST">
@@ -60,13 +22,24 @@
                 <input type="number" class="form-control" id="luas" name="luas" required>
             </div>
             <div class="form-group">
-                <label for="id_jenis">ID Jenis Perkebunan:</label>
-                <input type="number" class="form-control" id="id_jenis" name="id_jenis" required>
+                <label for="id_jenis">Jenis Perkebunan:</label>
+                <select class="form-control" id="id_jenis" name="id_jenis" required>
+                    <option value="">Pilih Jenis Perkebunan</option>
+                    @foreach($jenisPerkebunan as $jenis)
+                        <option value="{{ $jenis->id }}">{{ $jenis->nama }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="poligon">Poligon (WKT):</label>
-                <textarea class="form-control" id="poligon" name="poligon" required></textarea>
+                <label for="poligon">Poligon :</label>
+                <textarea class="form-control" id="poligon" name="poligon" placeholder="Contoh: [[30.xxxxxx, 50.xxxxxx], [30.xxxxxx, 50.xxxxxx], [30.xxxxxx, 50.xxxxxx]]" required></textarea>
+                <small class="form-text text-muted">
+                    Masukkan koordinat poligon dalam format array. Contoh: <br>
+                    <code>[[30.15646442, 50.135676421], [30.526587664, 50.46355948], [30.79434974, 50.50618144]]</code> <br>
+                    Setiap pasangan koordinat harus diapit oleh tanda kurung siku dan dipisahkan oleh koma.
+                </small>
             </div>
+
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
     </div>

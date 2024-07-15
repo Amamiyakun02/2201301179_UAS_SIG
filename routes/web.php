@@ -34,7 +34,7 @@ Route::prefix('jenis_perkebunan')->group(function () {
 
 //Routes API
 Route::prefix('data')->group(function () {
-    Route::get('/data_kebun', [BaseController::class, 'getKebun']);
+    Route::get('/data_kebun/{id}', [BaseController::class, 'getKebun']);
     Route::get('/data_jenis', [BaseController::class, 'getJenisPerkebunan']);
     Route::get('/data_icon', [BaseController::class, 'getIcon']);
 });
